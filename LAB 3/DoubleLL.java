@@ -1,22 +1,21 @@
-class Node{
+class Node {
     int data;
     Node next;
     Node prev;
 
-    Node(int data){
+    Node(int data) {
         this.data = data;
         this.next = null;
     }
 }
+
 public class DoubleLL {
     Node head;
-    Node tail;
 
-    public void insertAtBeginning(int data){
+    public void insertAtBeginning(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
-            tail = newNode;
         } else {
             newNode.next = head;
             head.prev = newNode;
@@ -24,94 +23,92 @@ public class DoubleLL {
         }
     }
 
-    public void insertAtEnd(int data){
+    public void insertAtEnd(int data) {
         Node newNode = new Node(data);
-        if(tail == null){
+        if (head == null) {
             head = newNode;
-            tail = newNode;
         } else {
-            tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.prev = temp;
         }
     }
-    public void insertAfter(int data, int key){
+
+    public void insertAfter(int data, int key) {
         Node newNode = new Node(data);
         Node currentNode = head;
-        while(currentNode!= null && currentNode.data!= key){
+        while (currentNode != null && currentNode.data != key) {
             currentNode = currentNode.next;
         }
-        if(currentNode == null){
+        if (currentNode == null) {
             System.out.println("Key not found in the list");
         } else {
-            if(currentNode.next == null){
-                currentNode.next = newNode;
-                newNode.prev = currentNode;
-                tail = newNode;
-            } else {
-                newNode.next = currentNode.next;
-                newNode.prev = currentNode;
+            newNode.next = currentNode.next;
+            newNode.prev = currentNode;
+            if (currentNode.next != null) {
                 currentNode.next.prev = newNode;
-                currentNode.next = newNode;
             }
+            currentNode.next = newNode;
         }
     }
-    public void deleteAtBeginning(){
-        if(head == null){
+
+    public void deleteAtBeginning() {
+        if (head == null) {
             System.out.println("List is empty");
         } else {
             head = head.next;
-            if(head!= null){
+            if (head != null) {
                 head.prev = null;
-            } else {
-                tail = null;
             }
         }
     }
 
-    public void deleteAtEnd(){
-        if(head == null){
+    public void deleteAtEnd() {
+        if (head == null) {
             System.out.println("List is empty");
-        } else if(head.next == null){
+        } else if (head.next == null) {
             head = null;
-            tail = null;
         } else {
-            tail = tail.prev;
-            tail.next = null;
+            Node temp = head;
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            temp.next = null;
         }
     }
 
-    public void deleteByKey(int key){
+    public void deleteByKey(int key) {
         Node currentNode = head;
-        while(currentNode!= null && currentNode.data!= key){
+        while (currentNode != null && currentNode.data != key) {
             currentNode = currentNode.next;
         }
-        if(currentNode == null){
+        if (currentNode == null) {
             System.out.println("Key not found in the list");
-        } else if(currentNode == head){
+        } else if (currentNode == head) {
             head = head.next;
-            if(head!= null){
+            if (head != null) {
                 head.prev = null;
-            } else {
-                tail = null;
             }
-        } else if(currentNode == tail){
-            tail = tail.prev;
-            tail.next = null;
         } else {
             currentNode.prev.next = currentNode.next;
-            currentNode.next.prev = currentNode.prev;
+            if (currentNode.next != null) {
+                currentNode.next.prev = currentNode.prev;
+            }
         }
     }
 
-    public void printList(){
+    public void printList() {
         Node temp = head;
-        while(temp!= null){
+        while (temp != null) {
             System.out.print(temp.data + " ");
             temp = temp.next;
         }
         System.out.println();
     }
+
     public static void main(String[] args) {
         DoubleLL dll = new DoubleLL();
         dll.insertAtBeginning(10);
@@ -135,6 +132,4 @@ public class DoubleLL {
         System.out.println("List after deleting by key 20:");
         dll.printList();
     }
-
-
 }
