@@ -1,23 +1,26 @@
-class Node{
+class Node {
 
     int data;
     Node next;
-    Node(int d){
+
+    Node(int d) {
         data = d;
         next = null;
 
     }
 }
+
 public class LinkedListInsertDelete {
     public int size;
     Node head;
-    LinkedListInsertDelete(){
+
+    LinkedListInsertDelete() {
         size = 0;
     }
 
-    public void insertAtFirst(int data){
+    public void insertAtFirst(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
             return;
         }
@@ -25,43 +28,45 @@ public class LinkedListInsertDelete {
         head = newNode;
         size++;
     }
-    public void insertAtLast(int data){
+
+    public void insertAtLast(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
             return;
         }
-      Node last = head;
-        while(last.next != null){
+        Node last = head;
+        while (last.next != null) {
             last = last.next;
         }
         last.next = newNode;
         size++;
 
     }
-    public void insertAtPosition(int index, int data){
+
+    public void insertAtPosition(int index, int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
             return;
         }
         Node current = head;
-        for(int i = 0; i < index && current!=null; i++){
+        for (int i = 0; i < index && current != null; i++) {
             current = current.next;
 
         }
-        if(current == null){
+        if (current == null) {
             System.out.println("Index out of bounds");
-        }
-        else{
+        } else {
             newNode.next = current.next;
             current.next = newNode;
 
         }
         size++;
     }
-    void deleteAtFirst(){
-        if(head == null){
+
+    void deleteAtFirst() {
+        if (head == null) {
             System.out.println("List is empty");
             return;
         }
@@ -71,18 +76,19 @@ public class LinkedListInsertDelete {
 
 
     }
-    void deleteAtLast(){
-        if(head == null){
+
+    void deleteAtLast() {
+        if (head == null) {
             System.out.println("List is empty");
             return;
         }
 
-        if(head.next == null){
+        if (head.next == null) {
             head = null;
             return;
         }
         Node temp = head;
-        while(temp.next.next != null){
+        while (temp.next.next != null) {
             temp = temp.next;
 
         }
@@ -90,7 +96,8 @@ public class LinkedListInsertDelete {
         size--;
 
     }
-//    void deleteAtLast(){
+
+    //    void deleteAtLast(){
 //        if(head == null){
 //            System.out.println("List is empty");
 //        }
@@ -108,57 +115,60 @@ public class LinkedListInsertDelete {
 //      return;
 //
 //    }
-    void deleteAtPosition(int index){
-        if(head == null){
+    void deleteAtPosition(int index) {
+        if (head == null) {
             System.out.println("List is empty");
         }
         size--;
-        if(index == 0){
+        if (index == 0) {
             head = head.next;
             return;
         }
         Node temp = head;
-       for(int i = 0; i < index -1 && temp!=null; i++){
-           temp = temp.next;
+        for (int i = 0; i < index - 1 && temp != null; i++) {
+            temp = temp.next;
 
-       }
-       if(temp == null||temp.next == null){
-           System.out.println("Invalid index");
-       }
-       temp.next = temp.next.next;
+        }
+        if (temp == null || temp.next == null) {
+            System.out.println("Invalid index");
+        }
+        temp.next = temp.next.next;
         size--;
 
     }
-    void printList(){
+
+    void printList() {
         Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data+"-->");
+        while (temp != null) {
+            System.out.print(temp.data + "-->");
             temp = temp.next;
 
         }
         System.out.println("null");
     }
-   public int getSize(){
+
+    public int getSize() {
         return size;
-   }
-   void reverseList(){
-        if(head == null || head.next == null){
+    }
+
+    void reverseList() {
+        if (head == null || head.next == null) {
             return;
         }
         Node prev = null;
         Node current = head;
         Node next = null;
-        while(current!= null){
+        while (current != null) {
             next = current.next;
             current.next = prev;
             //update
             prev = current;
             current = next;
         }
-    head.next=null;
+        head.next = null;
         head = prev;
 
-   }
+    }
 
 
     public static void main(String[] args) {

@@ -1,84 +1,87 @@
-class Node1{
+class Node1 {
     int data;
     Node1 next;
-    public Node1(int data){
+
+    public Node1(int data) {
         this.data = data;
         next = null;
     }
 }
+
 public class LLPractice {
     Node1 head;
-    private void insertAtStart(int data){
+
+    private void insertAtStart(int data) {
         Node1 newNode = new Node1(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
             return;
-        }
-        else{
-           newNode.next = head;
-           head = newNode;
-           return;
+        } else {
+            newNode.next = head;
+            head = newNode;
+            return;
         }
     }
-    private void insertAtEnd(int data){
+
+    private void insertAtEnd(int data) {
         Node1 newNode = new Node1(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
             return;
-        }
-        else{
+        } else {
             Node1 temp = head;
-            while(temp.next != null){
+            while (temp.next != null) {
                 temp = temp.next;
             }
             temp.next = newNode;
             return;
         }
     }
-    private void insertAtIndex(int data, int index){
+
+    private void insertAtIndex(int data, int index) {
         Node1 newNode = new Node1(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
-        }
-        else{
+        } else {
             Node1 temp = head;
-            for(int i = 0; i < index-1 && temp.next!=null; i++){
+            for (int i = 0; i < index - 1 && temp.next != null; i++) {
                 temp = temp.next;
             }
-            if(temp == null){
+            if (temp == null) {
                 System.out.println("Index out of bounds");
                 return;
-            }
-            else {
+            } else {
                 newNode.next = temp.next;
                 temp.next = newNode;
             }
         }
     }
-    private void deleteAtFirst(){
-        if(head == null){
+
+
+    private void deleteAtFirst() {
+        if (head == null) {
             System.out.println("The list is empty");
             return;
         }
 //        if(head.next == null){
 //            head = null;
 //        }//we donot need to do this bcz above check do the same job
-        else{
+        else {
             head = head.next;
             return;
         }
     }
-    private void deleteAtLast(){
-        if(head == null){
+
+    private void deleteAtLast() {
+        if (head == null) {
             System.out.println("The list is empty");
             return;
         }
-        if(head.next == null){
+        if (head.next == null) {
             head = null;
-        }
-        else{
+        } else {
             Node1 temp = head;
-            while(temp.next.next != null){
+            while (temp.next.next != null) {
                 temp = temp.next;
 
             }
@@ -86,60 +89,59 @@ public class LLPractice {
 
         }
     }
-    private void deleteAtIndex(int index){
-        if(head == null){
+
+    private void deleteAtIndex(int index) {
+        if (head == null) {
             System.out.println("The list is empty");
             return;
-        }
-        else if(head.next == null){
+        } else if (head.next == null) {
             head = null;
             return;
-        }
-        else{
+        } else {
             Node1 temp = head;
-            for(int i = 0; i < index-1 && temp.next!=null; i++){
+            for (int i = 0; i < index - 1 && temp.next != null; i++) {
                 temp = temp.next;
 
             }
-            if(temp == null || temp.next == null){
+            if (temp == null || temp.next == null) {
 
                 System.out.println("Index out of bounds");
-            return;
-            }
-            else{
+                return;
+            } else {
                 temp.next = temp.next.next;
-
+                return;
             }
         }
     }
-    private void reverseList(){
-        if(head == null){
+
+    private void reverseList() {
+        if (head == null) {
             System.out.println("The list is empty");
-        }
-        else if(head.next == null){
+            return;
+        } else if (head.next == null) {
             return;
         }
         Node1 prev = null;
         Node1 curr = head;
-        Node1 next= null;
-        while(curr != null){
+        Node1 next = null;
+        while (curr != null) {
             next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
         }
-        head.next=null;
+        head.next = null;
         head = prev;
 
     }
-    void printList(){
-        if(head == null){
+
+    void printList() {
+        if (head == null) {
             System.out.println("The list is empty");
-        }
-        else{
+        } else {
             Node1 temp = head;
-            while(temp != null){
-                System.out.print(temp.data+"-->");
+            while (temp != null) {
+                System.out.print(temp.data + "-->");
                 temp = temp.next;
 
             }
@@ -163,7 +165,7 @@ public class LLPractice {
         obj.printList();
         obj.deleteAtIndex(2);
         obj.printList();
-        obj.insertAtIndex(3,2);
+        obj.insertAtIndex(3, 2);
         obj.printList();
     }
 

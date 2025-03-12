@@ -41,18 +41,13 @@ public class DoubleLLPractice {
     }
     private void insertAtIndex(int data, int index) {
         Node1 newNode = new Node1(data);
-        if (index == 0) {
-            insertAtFirst(data);
-            return;
-        }
-        if(head == null) {
+        if (index == 0 || head == null) {
             insertAtFirst(data);
             return;
         }
         Node1 temp = head;
         for (int i = 0; i < index - 1 && temp!=null; i++) {
             temp = temp.next;
-
         }
         if (temp == null) {
             System.out.println("Index out of bounds");
@@ -60,6 +55,7 @@ public class DoubleLLPractice {
         }
         newNode.next = temp.next;
         temp.next.prev = newNode;
+        //temp.next = newNode; can also write this
         newNode.prev = temp;
         temp.next = newNode;
         return;
